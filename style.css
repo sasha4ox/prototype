@@ -1,0 +1,23 @@
+.header {
+  width: 100%;
+  background: gray;
+}
+.footer {
+  width: 100%;
+  background: gray;
+}
+.main {
+  display: flex;
+}
+.main__left,
+.main__right {
+  width: 50%;
+}
+.main__left {
+  display: flex;
+  justify-content: space-around;
+}
+.main__left input {
+  width: 49%;
+  margin-bottom: 15px;
+}
