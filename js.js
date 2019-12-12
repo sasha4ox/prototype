@@ -33,7 +33,7 @@ Student.prototype.createHomeTask = function(title, status, description) {
     description: description,
   };
   if (this.homeTask) {
-    this.homeTask.push(newTask);
+    this.homeTask.push(newHomeWork);
   } else {
     this.homeTask = [
       {
@@ -82,6 +82,7 @@ valera.createSimpleTask('did it', false);
 const bor = new User('bor', 'alee');
 bor.createSimpleTask('did it absolutly', true);
 valera.createHomeTask('Math', 'false', 'learn all about circle');
+valera.createHomeTask('History', 'true', 'learn all about Napoleon');
 const alexDev = new Developer('Alex', 'Fox', 'Front-end', 'Make Ukraine great again');
 alexDev.createProjectTask('Make a site', false, 'make a site for McDonalds', '>><<,>');
 alexDev.createHomeTask('dsds', false, 'dsdsds');
@@ -105,6 +106,7 @@ form.addEventListener('change', function() {
 
   console.log(form.select.value);
 });
+let newUser;
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   let data = new FormData(form);
@@ -117,7 +119,7 @@ form.addEventListener('submit', function(e) {
     return x.value;
   });
   console.warn(tr);
-  let newUser;
+
   switch (form.select.value) {
     case 'user':
       newUser = new User(...tr);
@@ -139,4 +141,35 @@ form.addEventListener('submit', function(e) {
 });
 
 const formSimpleTask = document.querySelector('#formSimpleTask');
+const forHomeTask = document.querySelector('#forHomeTask');
+const forProjectTask = document.querySelector('#forProjectTask');
+
 console.log(formSimpleTask);
+formSimpleTask.addEventListener('submit', function(e) {
+  e.preventDefault();
+  newUser.createSimpleTask(this.title.value, this.status.value);
+  console.log(newUser);
+});
+forHomeTask.addEventListener('submit', function(e) {
+  e.preventDefault();
+  newUser.createHomeTask(this.title.value, this.status.value, this.description.value);
+  console.log(newUser);
+});
+
+////////////////
+forProjectTask.addEventListener('submit', function(e) {
+  e.preventDefault();
+  for (let name in newUser) {
+    if(name !==)
+   createProjectTask createHomeTask createSimpleTask
+    alert(name);
+  }
+  console.log(newUser.hasOwnProperty('name'));
+  newUser.createProjectTask(
+    this.title.value,
+    this.status.value,
+    this.description.value,
+    this.deadlineDate.value
+  );
+  console.log(newUser);
+});
