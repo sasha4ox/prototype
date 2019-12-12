@@ -147,29 +147,84 @@ const forProjectTask = document.querySelector('#forProjectTask');
 console.log(formSimpleTask);
 formSimpleTask.addEventListener('submit', function(e) {
   e.preventDefault();
-  newUser.createSimpleTask(this.title.value, this.status.value);
+  if (hasPropertyInPrototype(newUser, 'createSimpleTask')) {
+    newUser.createSimpleTask(this.title.value, this.status.value);
+    createrTodo(newUser, 'task');
+  } else {
+    alert("Sory, you don't have permision");
+  }
   console.log(newUser);
 });
 forHomeTask.addEventListener('submit', function(e) {
   e.preventDefault();
-  newUser.createHomeTask(this.title.value, this.status.value, this.description.value);
+  if (hasPropertyInPrototype(newUser, 'createHomeTask')) {
+    newUser.createHomeTask(this.title.value, this.status.value, this.description.value);
+    createrTodo(newUser, 'homeTask');
+  } else {
+    alert("Sory, you don't have permision");
+  }
+
   console.log(newUser);
 });
-
+function hasPropertyInPrototype(obj, property) {
+  for (var name in obj) {
+    if (name === property) {
+      return true;
+    }
+  }
+}
+// function (param) {  }
 ////////////////
+Array.prototype.remove = function(index) {
+  this.splice(index, 1);
+};
+function createrTodo(obj, props) {
+  const todoEl = document.querySelector('#todo');
+  for (let prop in obj) {
+    if (prop === props) {
+      const div = document.createElement('div');
+      const p = document.createElement('p');
+      const del = document.createElement('button');
+
+      const lenthOfProps = obj[props].length - 1;
+      del.setAttribute('id', lenthOfProps);
+      del.onclick = function() {
+        obj[props].remove(this.id);
+        // console.warn();
+        this.parentNode.parentNode.remove(this);
+        // console.log(this.id);
+      };
+      const lastAddedProps = obj[props].filter((item, i) => {
+        if (i === lenthOfProps) return item;
+      });
+
+      p.innerHTML = `${lastAddedProps[0].title} ${lastAddedProps[0].status} ${lastAddedProps[0].description} ${lastAddedProps[0].deadlineDate}`;
+      todoEl.appendChild(div);
+      div.appendChild(p);
+      p.appendChild(del);
+      console.log(obj[props]);
+      console.log(lastAddedProps);
+    }
+  }
+  // console.log(obj);
+}
 forProjectTask.addEventListener('submit', function(e) {
   e.preventDefault();
-  for (let name in newUser) {
-    if(name !==)
-   createProjectTask createHomeTask createSimpleTask
-    alert(name);
+
+  //  createProjectTask createHomeTask createSimpleTask
+  // alert(name);
+  if (hasPropertyInPrototype(newUser, 'createProjectTask')) {
+    newUser.createProjectTask(
+      this.title.value,
+      this.status.value,
+      this.description.value,
+      this.deadlineDate.value
+    );
+    createrTodo(newUser, 'projectTask');
+  } else {
+    alert("Sory, you don't have permision");
   }
-  console.log(newUser.hasOwnProperty('name'));
-  newUser.createProjectTask(
-    this.title.value,
-    this.status.value,
-    this.description.value,
-    this.deadlineDate.value
-  );
+
   console.log(newUser);
+  // console.log(newUser.hasOwnProperty('name'));
 });
