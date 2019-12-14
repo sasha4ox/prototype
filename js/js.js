@@ -76,17 +76,17 @@ Developer.prototype.createProjectTask = function(title, status, description, dea
 const valera = new Student('Valera', 'Djeday', 'Math');
 const alex = new User('Alex', 'Fox');
 
-alex.createSimpleTask('did it', false);
-alex.createSimpleTask('done it', true);
-valera.createSimpleTask('did it', false);
-const bor = new User('bor', 'alee');
-bor.createSimpleTask('did it absolutly', true);
-valera.createHomeTask('Math', 'false', 'learn all about circle');
-valera.createHomeTask('History', 'true', 'learn all about Napoleon');
-const alexDev = new Developer('Alex', 'Fox', 'Front-end', 'Make Ukraine great again');
-alexDev.createProjectTask('Make a site', false, 'make a site for McDonalds', '>><<,>');
-alexDev.createHomeTask('dsds', false, 'dsdsds');
-console.log(alex, bor, valera, alexDev);
+// alex.createSimpleTask('did it', false);
+// alex.createSimpleTask('done it', true);
+// valera.createSimpleTask('did it', false);
+// const bor = new User('bor', 'alee');
+// bor.createSimpleTask('did it absolutly', true);
+// valera.createHomeTask('Math', 'false', 'learn all about circle');
+// valera.createHomeTask('History', 'true', 'learn all about Napoleon');
+// const alexDev = new Developer('Alex', 'Fox', 'Front-end', 'Make Ukraine great again');
+// alexDev.createProjectTask('Make a site', false, 'make a site for McDonalds', '>><<,>');
+// alexDev.createHomeTask('dsds', false, 'dsdsds');
+// console.log(alex, bor, valera, alexDev);
 const form = document.getElementById('form');
 form.addEventListener('change', function() {
   switch (form.select.value) {
@@ -109,17 +109,11 @@ form.addEventListener('change', function() {
 let newUser;
 const createListener = function(e) {
   e.preventDefault();
-  // let data = new FormData(form);
 
   const formChild = [...form.childNodes].filter(child => child.name);
   const tr = formChild.map(x => {
-    // return {
-    //   [x.name]: x.value,
-    // };
     return x.value;
   });
-  // console.warn(tr);
-
   switch (form.select.value) {
     case 'user':
       newUser = new User(...tr);
@@ -138,10 +132,12 @@ const createListener = function(e) {
       break;
   }
   console.log(newUser);
-  form.removeEventListener('submit', createListener);
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-  });
+  if (newUser) {
+    form.removeEventListener('submit', createListener);
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+    });
+  }
 };
 form.addEventListener('submit', createListener);
 
@@ -191,9 +187,17 @@ function createrTodo(obj, props) {
   // console.log([...todoEl.childNodes].length - 1);
   for (let prop in obj) {
     if (prop === props) {
-      const div = document.createElement('div');
+      const div = document.createElement('li');
       const p = document.createElement('p');
       const del = document.createElement('button');
+      del.classList.add('close');
+      del.setAttribute('aria-hidden', 'Close');
+      const spanEl = document.createElement('span');
+      spanEl.setAttribute('aria-hidden', 'true');
+      spanEl.innerHTML = '&times';
+      //       <button type="button" class="close" aria-label="Close">
+      //   <span aria-hidden="true">&times;</span>
+      // </button>
       const lenthOfProps = obj[props].length - 1;
       del.setAttribute('id', lenthOfProps);
       del.onclick = function() {
@@ -222,6 +226,8 @@ function createrTodo(obj, props) {
       todoEl.appendChild(div);
       div.appendChild(p);
       p.appendChild(del);
+      del.append(spanEl);
+
       // console.log(obj[props]);
       // console.log(lastAddedProps);
     }

@@ -1,0 +1,99 @@
+.header,
+.footer {
+  width: 100%;
+  background: gray;
+  height: 10vh;
+  margin: 0 0 20px 0;
+}
+.footer {
+  margin: 0;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+select[class='form-control'] {
+  width: 90%;
+}
+/* .footer {
+  width: 100%;
+  height: 100%;
+  background: gray;
+} */
+.main {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  min-height: 75vh;
+}
+
+.main__left,
+.main__right {
+  width: 50%;
+}
+@media screen and (max-width: 1050px) {
+  .main {
+    flex-direction: column;
+  }
+  .main__left,
+  .main__right {
+    width: 100%;
+  }
+}
+.main__left {
+  display: flex;
+  justify-content: space-around;
+}
+.main__left input {
+  width: 90%;
+  margin-bottom: 15px;
+}
+button[class='form-control'] {
+  width: 50%;
+  height: 50px;
+  /* border: none;
+  outline: none; */
+  margin-top: 10px;
+  transition: all ease 1s;
+}
+button[class='form-control']:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px #80bdff;
+}
+.close {
+  float: none;
+  margin-left: 15px;
+}
+.todo button {
+  width: 15px;
+  height: 15px;
+  transform: translateY(10%);
+}
+.tab-pane form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tab-pane input {
+  width: 90%;
+  margin: 10px 0 0 0;
+  /* margin: 0 auto; */
+  height: 50px;
+}
+.tab-pane textarea {
+  width: 90%;
+  margin: 10px 0 0 0;
+  /* margin: 0 auto; */
+  height: 50px;
+}
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+}
+.nav-tabs li {
+  margin-right: 15px;
+}

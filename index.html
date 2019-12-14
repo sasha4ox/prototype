@@ -10,7 +10,7 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Prototype</title>
   </head>
   <body>
@@ -18,18 +18,30 @@
     <main class="main">
       <div class="main__left">
         <form action="" id="form">
-          <input type="text" name="name" placeholder="name" />
-          <input type="text" name="surename" placeholder="surename" />
-          <input type="text" name="specialization" placeholder="specialization" disabled />
-          <input type="text" name="jobTitile" placeholder="job titile" disabled />
-          <select name="select" id="select">
+          <input type="text" class="form-control" name="name" placeholder="name" />
+          <input type="text" class="form-control" name="surename" placeholder="surename" />
+          <input
+            type="text"
+            class="form-control"
+            name="specialization"
+            placeholder="specialization"
+            disabled
+          />
+          <input
+            type="text"
+            class="form-control"
+            name="jobTitile"
+            placeholder="job titile"
+            disabled
+          />
+          <select name="select" class="form-control" id="select">
             <!-- <option value="Choice" selected>Choice</option> -->
             <option>--Select type--</option>
             <option value="user">User</option>
             <option value="student">Student</option>
             <option value="developer">Developer</option>
           </select>
-          <button type="submit">Create</button>
+          <button type="submit" class="form-control">Create</button>
         </form>
       </div>
       <div class="main__right">
@@ -37,48 +49,61 @@
           <li class="active"><a data-toggle="tab" href="#panel1">Simple task</a></li>
           <li><a data-toggle="tab" href="#panel2">Home task</a></li>
           <li><a data-toggle="tab" href="#panel3">Project task</a></li>
-          <!-- <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              Другие панели
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a data-toggle="tab" href="#panel3">Панель 3</a></li>
-              <li><a data-toggle="tab" href="#panel4">Панель 4</a></li>
-            </ul>
-          </li> -->
         </ul>
 
         <div class="tab-content">
           <div id="panel1" class="tab-pane fade in active">
             <form action="" id="formSimpleTask">
-              <input type="text" name="title" id="" placeholder="title" />
-              <input type="text" name="status" id="" placeholder="status" />
-              <button type="submit">Add task</button>
+              <input type="text" class="form-control" name="title" id="" placeholder="title" />
+              <input type="text" class="form-control" name="status" id="" placeholder="status" />
+              <button type="submit" class="form-control">Add task</button>
             </form>
           </div>
           <div id="panel2" class="tab-pane fade">
             <form action="" id="forHomeTask">
-              <input type="text" name="title" id="" placeholder="title" />
-              <input type="text" name="status" id="" placeholder="status" />
-              <textarea name="description" id="" cols="30" rows="10"></textarea>
-              <button type="submit">Add task</button>
+              <input type="text" class="form-control" name="title" id="" placeholder="title" />
+              <input type="text" class="form-control" name="status" id="" placeholder="status" />
+              <textarea
+                placeholder="description"
+                name="description"
+                id=""
+                cols="30"
+                rows="10"
+                class="form-control"
+              ></textarea>
+              <button type="submit" class="form-control">Add task</button>
             </form>
           </div>
           <div id="panel3" class="tab-pane fade">
             <form action="" id="forProjectTask">
-              <input type="text" name="title" id="" placeholder="title" />
-              <input type="text" name="status" id="" placeholder="status" />
-              <input type="text" name="deadlineDate" id="" placeholder="dead line date" />
-              <textarea name="description" id="" cols="30" rows="10"></textarea>
+              <input type="text" class="form-control" name="title" id="" placeholder="title" />
+              <input type="text" class="form-control" name="status" id="" placeholder="status" />
+              <input
+                type="text"
+                class="form-control"
+                name="deadlineDate"
+                id=""
+                placeholder="dead line date"
+              />
+              <textarea
+                placeholder="description"
+                name="description"
+                id=""
+                cols="30"
+                rows="10"
+                class="form-control"
+              ></textarea>
 
-              <button type="submit">Add task</button>
+              <button type="submit" class="form-control">Add task</button>
             </form>
           </div>
         </div>
       </div>
     </main>
-    <section class="todo" id="todo"></section>
+    <section>
+      <ol class="todo" id="todo"></ol>
+    </section>
+
     <footer class="footer"></footer>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -95,6 +120,6 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-    <script src="js.js"></script>
+    <script src="./js/js.js"></script>
   </body>
 </html>
