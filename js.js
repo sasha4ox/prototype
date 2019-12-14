@@ -107,9 +107,9 @@ form.addEventListener('change', function() {
   console.log(form.select.value);
 });
 let newUser;
-form.addEventListener('submit', function(e) {
+const createListener = function(e) {
   e.preventDefault();
-  let data = new FormData(form);
+  // let data = new FormData(form);
 
   const formChild = [...form.childNodes].filter(child => child.name);
   const tr = formChild.map(x => {
@@ -118,7 +118,7 @@ form.addEventListener('submit', function(e) {
     // };
     return x.value;
   });
-  console.warn(tr);
+  // console.warn(tr);
 
   switch (form.select.value) {
     case 'user':
@@ -138,7 +138,12 @@ form.addEventListener('submit', function(e) {
       break;
   }
   console.log(newUser);
-});
+  form.removeEventListener('submit', createListener);
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+  });
+};
+form.addEventListener('submit', createListener);
 
 const formSimpleTask = document.querySelector('#formSimpleTask');
 const forHomeTask = document.querySelector('#forHomeTask');
@@ -178,18 +183,22 @@ function hasPropertyInPrototype(obj, property) {
 Array.prototype.remove = function(index) {
   this.splice(index, 1);
 };
+// function render(arr){
+
+// }
 function createrTodo(obj, props) {
   const todoEl = document.querySelector('#todo');
+  // console.log([...todoEl.childNodes].length - 1);
   for (let prop in obj) {
     if (prop === props) {
       const div = document.createElement('div');
       const p = document.createElement('p');
       const del = document.createElement('button');
-
       const lenthOfProps = obj[props].length - 1;
       del.setAttribute('id', lenthOfProps);
       del.onclick = function() {
-        obj[props].remove(this.id);
+        // obj[props].remove(this.id);
+        delete obj[props][this.id];
         // console.warn();
         this.parentNode.parentNode.remove(this);
         // console.log(this.id);
@@ -197,13 +206,24 @@ function createrTodo(obj, props) {
       const lastAddedProps = obj[props].filter((item, i) => {
         if (i === lenthOfProps) return item;
       });
+      console.log(props);
+      switch (props) {
+        case 'homeTask':
+          p.innerHTML = `Type: Simple Task; Title: ${lastAddedProps[0].title} Status: ${lastAddedProps[0].status} Description: ${lastAddedProps[0].description}`;
+          break;
+        case 'projectTask':
+          p.innerHTML = `Type: Project Task; Title: ${lastAddedProps[0].title} Status: ${lastAddedProps[0].status} Description: ${lastAddedProps[0].description} Deadline: ${lastAddedProps[0].deadlineDate}`;
+          break;
+        case 'task':
+          p.innerHTML = `Type: Simple Task; Title: ${lastAddedProps[0].title} Status: ${lastAddedProps[0].status}`;
+          break;
+      }
 
-      p.innerHTML = `${lastAddedProps[0].title} ${lastAddedProps[0].status} ${lastAddedProps[0].description} ${lastAddedProps[0].deadlineDate}`;
       todoEl.appendChild(div);
       div.appendChild(p);
       p.appendChild(del);
-      console.log(obj[props]);
-      console.log(lastAddedProps);
+      // console.log(obj[props]);
+      // console.log(lastAddedProps);
     }
   }
   // console.log(obj);
